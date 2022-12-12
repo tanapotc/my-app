@@ -17,9 +17,10 @@ const Login = () => {
     await axios
     .post(`${url}login`,temp)
     .then(function (response) {
-      if(response.data === 0){ 
-        console.log('response');
-        sessionStorage.setItem("user_id",response.data);   
+      if(response.data.length > 0){ 
+        sessionStorage.setItem("username", response.data[0].Username);
+        sessionStorage.setItem("user_id",response.data[0].User_ID);   
+        window.location.href = "/home";
       }else{
         console.log(response)
       }
@@ -34,7 +35,7 @@ const Login = () => {
         <div className="login-pic"  >
           <img src={logo} alt="IMG" />
         </div>
-        <form className="modal-content">
+        <div className="modal-content">
           <div > 
             <span className="login-title">
                 <h1>Member Login</h1>
@@ -48,8 +49,7 @@ const Login = () => {
             </div>
             <Link to="/register">Create your Account </Link> 
           </div>
-          
-        </form>
+        </div>
       </div>
     </div>
     

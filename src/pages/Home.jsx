@@ -22,25 +22,6 @@ const Home = () => {
       myElement.style.display = "none";
      }
   } 
-
-  async function login() {
-    let temp = {
-      Username: "admin",
-      Password: "admin",
-      E_mail: "admin@gmail.com"
-    }
-    await axios.post(`${url}login`,temp).then(response => {
-      if(response.data === 0){
-        console.log(response)
-        sessionStorage.setItem();   
-      }else{
-        console.log(response)
-      }
-    }).catch(ex =>{
-      throw ex
-    })
-  }
-
   return (
     <>
       <section className="card">
@@ -62,11 +43,6 @@ const Home = () => {
               )
             })} 
           </table>
-        </div>
-      </section>
-      <section>
-        <div>
-          <button onClick={login}> test</button>
         </div>
       </section>
     </> 

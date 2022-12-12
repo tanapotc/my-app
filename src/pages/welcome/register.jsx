@@ -1,14 +1,12 @@
 import "../../styles/login.css";
-// import logo from '../../img/login.png'; 
 // import { Link } from "react-router-dom";
-// import axios from "axios";
-// import enurl from "../../api/environment";
+import axios from "axios";
+import enurl from "../../api/environment";
 // import { useState } from "react";
 
 const Register = () => {
-
-  
-  const reg = () =>  {  
+  const url = enurl.apiUrl;
+  async function reg() {
     let eMail = document.getElementById('eMail').value; 
     let uname = document.getElementById('uname').value; 
     let psw   = document.getElementById('psw').value; 
@@ -19,35 +17,28 @@ const Register = () => {
         Password: psw,
         E_mail: eMail,
       }
-      console.log(temp)
-      // axios.post(enurl.apiUrl+'register').then(response => { 
-        
-      //     setUserList(response.data);  
-      //   }); 
-    }else{
+      await axios
+      .post(`${url}register`,temp)
+      .then(function (response) {
+        if(response.data.length > 0){ 
+          alert(response.data);
+          window.location.href = "/login";
+        }else{
+          console.log(response)
+        }
+      }).catch(ex =>{
+        throw ex
+      })
+    } else {
       alert('password is not matched')
     }
-    
-    let temp = {
-      Username: uname,
-      Password: psw,
-      E_mail: eMail,
-    }
-    console.log(temp)
-    // axios.post(enurl.apiUrl+'register').then(response => { 
-      
-    //     setUserList(response.data);  
-    //   }); 
-}
-
-// const uname = this.state.uname;
-// const psw = this.state.uname;
-// const cpsw = this.state.uname;
+  }
+  
     return (
       <>
       <div className="container-login">
         <div className="wrap-container">
-          <form className="modal-content">
+          <div className="modal-content">
             <div > 
               <span className="login-title">
                   <h1>Register</h1>
@@ -58,13 +49,13 @@ const Register = () => {
                 <label><b>Username</b></label>
                   <input type="text" placeholder="Enter Username" name="uname" id="uname" required />
                 <label><b>Password</b></label> 
-                  <input type="text" placeholder="Enter Password" name="psw" id="psw" required /> 
+                  <input type="password" placeholder="Enter Password" name="psw" id="psw" required /> 
                 <label><b>Confirm Password</b></label> 
-                  <input type="text" placeholder="Enter Password" name="cpsw" id="cpsw" required />  
+                  <input type="password" placeholder="Enter Password" name="cpsw" id="cpsw" required />  
               </div>
               <button onClick={reg}>SUBMIT</button> 
             </div>
-          </form>
+          </div>
  
           
         </div>
