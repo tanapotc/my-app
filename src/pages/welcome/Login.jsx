@@ -14,11 +14,11 @@ const Login = () => {
       E_mail: mail,
       Password: pass
     }
-    await axios.post(`${url}login`,temp).then(response => {
-      if(response.data === 0){
-        this.props.history.push('/home');
-        console.log(response);
-        
+    await axios
+    .post(`${url}login`,temp)
+    .then(function (response) {
+      if(response.data === 0){ 
+        console.log('response');
         sessionStorage.setItem("user_id",response.data);   
       }else{
         console.log(response)
@@ -39,17 +39,14 @@ const Login = () => {
             <span className="login-title">
                 <h1>Member Login</h1>
             </span>
-
             <div> 
               <label><b>E-Mail</b></label>
                 <input type="text" placeholder="Enter Username" id="eMail"  />
               <label><b>Password</b></label> 
                 <input type="password" placeholder="Enter Password" id="psw" /> 
-              
               <button type="submit" onClick={auth}>Login</button>
-             
-              <Link to="/register">Create your Account <i>fa-long-arrow-right</i></Link> 
             </div>
+            <Link to="/register">Create your Account </Link> 
           </div>
           
         </form>
