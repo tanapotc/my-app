@@ -22,7 +22,8 @@ const Login = () => {
         sessionStorage.setItem("user_id",response.data[0].User_ID);   
         window.location.href = "/home";
       }else{
-        console.log(response)
+        alert(response.data.some);
+        console.log('Invalid login credentials. Please check again.');
       }
     }).catch(ex =>{
       throw ex
