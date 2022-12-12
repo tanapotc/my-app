@@ -6,15 +6,20 @@ import enurl from "../../api/environment";
 
 const Login = () => {
   const url = enurl.apiUrl;
+
   async function auth() {
+    let mail = document.getElementById('eMail').value;
+    let pass = document.getElementById('psw').value;
     let temp = {
-      Username: document.getElementById('eMail').value,
-      Password: document.getElementById('psw').value
+      E_mail: mail,
+      Password: pass
     }
     await axios.post(`${url}login`,temp).then(response => {
       if(response.data === 0){
-        console.log(response)
-        sessionStorage.setItem();   
+        this.props.history.push('/home');
+        console.log(response);
+        
+        sessionStorage.setItem("user_id",response.data);   
       }else{
         console.log(response)
       }
@@ -26,8 +31,7 @@ const Login = () => {
     <>
     <div className="container-login">
       <div className="wrap-container">
-        <div className="login-pic" style={{willChange:'tranform'}&&{
-          transform: 'perspective(300px) rotateX(0deg) rotateY(0deg)'}}>
+        <div className="login-pic"  >
           <img src={logo} alt="IMG" />
         </div>
         <form className="modal-content">
@@ -36,17 +40,14 @@ const Login = () => {
                 <h1>Member Login</h1>
             </span>
 
-            <div className="wrap-input"> 
-              <label for="uname" id="E_mail"><b>E-Mail</b></label>
-                <input type="text" placeholder="Enter Username" name="uname"   />
-              <label for="psw" id="psw"><b>Password</b></label> 
-                <input type="text" placeholder="Enter Password" name="uname"   /> 
+            <div> 
+              <label><b>E-Mail</b></label>
+                <input type="text" placeholder="Enter Username" id="eMail"  />
+              <label><b>Password</b></label> 
+                <input type="password" placeholder="Enter Password" id="psw" /> 
               
               <button type="submit" onClick={auth}>Login</button>
-              
-              <label>
-                <input type="checkbox" checked="checked" name="remember"/> Remember me
-              </label>
+             
               <Link to="/register">Create your Account <i>fa-long-arrow-right</i></Link> 
             </div>
           </div>
