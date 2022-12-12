@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container-login {
+    width: 100%;
+    min-height: 100vh; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px; 
+}
+.login-pic{
+    width: 316px;
+    will-change: transform;
+    transform: perspective(300px) rotateX(0deg) rotateY(0deg);
+}
+.wrap-container{
+    width: 960px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 177px 130px 33px 95px;
+}
+.modal-content{
+    width: 290px;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+button {
+    background-color: #6495ED;
+    border-radius: 12px;
+    color: white;
+    padding: 14px 18px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer; 
+}
+button:hover {
+opacity: 0.8;
+}
+  
+.login-title{
+    font-size: 18px;
+    color: #333; 
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 54px;
+}
+.wrap-input{
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
