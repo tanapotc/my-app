@@ -1,11 +1,17 @@
 import { Outlet, Link } from "react-router-dom";
 import "../styles/navbar.css"; 
 const Navbar = () => {
+    const name = sessionStorage.getItem('username')
+    function logout() {
+        sessionStorage.setItem('username','')
+        sessionStorage.setItem('user_id','')
+    }
+    
   return (
     <>
       <nav className="flex-container">
         <div className="logo">
-            <h1>Hello world</h1>
+            <h1>Welcome : {name}</h1>
         </div>
         <ul className="menu">
           <li>
@@ -16,6 +22,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={logout}>Loguot</Link>
           </li>
         </ul>
       </nav>

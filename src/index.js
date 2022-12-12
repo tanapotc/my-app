@@ -22,7 +22,7 @@ root.render(
       {/* <Route path="/" element={<Layout />}> */}
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
-      <Route path="forgotpassword" element={<Forgotpassword />} />
+      <Route path="forgotpassword" element={<Forgotpassword />} /> 
       <Route  path="/" element={<Navbar />}>
         {/* <Route index element={<Home />} /> */}
         <Route index path="home" element={<Home />} />
