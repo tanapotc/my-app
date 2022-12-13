@@ -2,8 +2,6 @@ import '../styles/body.css'
 import axios from "axios";
 import enurl from "../api/environment";
 import React, { useState } from "react";
-// import { styled } from '@mui/material/styles';
-// import Paper from '@mui/material/Paper'; 
 const Home = () => {
   const url = enurl.apiUrl;
   const [UserList,setUserList] = useState([]);

@@ -18,8 +18,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      {/* <Route path="/" element={<Layout />}> */}
-      <Route index path="login" element={<Login />} />
+      <Route index path="/" element={<Login />}/>
+      <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
       <Route path="forgotpassword" element={<Forgotpassword />} /> 
       <Route element={<Navbar />}>
