@@ -6,31 +6,47 @@ import enurl from "../../api/environment";
 
 const Register = () => {
   const url = enurl.apiUrl;
+  function validateEmail(inputText)
+  {
+    var pattern = (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    var mailformat = pattern.test(inputText)
+    if(mailformat)
+      {
+        return true;
+      } else {
+        return false;
+      }
+  }
+
   async function reg() {
     let eMail = document.getElementById('eMail').value; 
     let uname = document.getElementById('uname').value; 
     let psw   = document.getElementById('psw').value; 
     let cpsw  = document.getElementById('cpsw').value; 
-    if(psw === cpsw){
-      let temp = {
-        Username: uname,
-        Password: psw,
-        E_mail: eMail,
-      }
-      await axios
-      .post(`${url}register`,temp)
-      .then(function (response) {
-        if(response.data.length > 0){ 
-          alert(response.data);
-          window.location.href = "/login";
-        }else{
-          console.log(response)
+    if(validateEmail(eMail)){
+      if(psw === cpsw){
+        let temp = {
+          Username: uname,
+          Password: psw,
+          E_mail: eMail,
         }
-      }).catch(ex =>{
-        throw ex
-      })
+        await axios
+        .post(`${url}register`,temp)
+        .then(function (response) {
+          if(response.data.length > 0){ 
+            alert(response.data);
+            window.location.href = "/login";
+          }else{
+            console.log(response)
+          }
+        }).catch(ex =>{
+          throw ex
+        })
+      } else {
+        alert('password is not matched')
+      }
     } else {
-      alert('password is not matched')
+      alert('You have entered an invalid email address!')
     }
   }
   
