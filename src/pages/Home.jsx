@@ -1,8 +1,14 @@
 import '../styles/body.css'
 import axios from "axios";
 import enurl from "../api/environment";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
+ 
 const Home = () => {
+
+  useEffect(() => {
+    getUser()  
+  });
+  
   const url = enurl.apiUrl;
   const [UserList,setUserList] = useState([]);
   const getUser = async () =>  {  

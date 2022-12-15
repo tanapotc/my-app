@@ -33,9 +33,13 @@ const Register = () => {
         await axios
         .post(`${url}register`,temp)
         .then(function (response) {
-          if(response.data.length > 0){ 
-            alert(response.data);
-            window.location.href = "/login";
+          if(response.data.pass === true){ 
+            if(response.data.status === 1){
+              alert(response.data.message);
+              window.location.href = "/login";
+            } else {
+              alert(response.data.message);
+            }
           }else{
             console.log(response)
           }
