@@ -3,10 +3,13 @@ import logo from '../../img/login.png';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import enurl from "../../api/environment";
+import {useEffect} from "react";
 
 const Login = () => {
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
   const url = enurl.apiUrl;
-  
   function validateEmail(inputText)
   {
     var pattern = (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -52,6 +55,12 @@ const Login = () => {
       alert('Press enter your E-Mail adress and Password')
     }
   }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      auth();
+    }
+  }
   return (
     <>
     <div className="container-login">
@@ -60,15 +69,15 @@ const Login = () => {
           <img src={logo} alt="IMG" />
         </div>
         <div className="modal-content">
-          <div > 
+          <div  onSubmit={auth}> 
             <span className="login-title">
                 <h1>Member Login</h1>
             </span>
             <div> 
               <label><b>E-Mail</b></label>
-                <input type="text" name="Email" placeholder="Enter Username" id="eMail" required />
+                <input type="text" name="Email" placeholder="Enter Username" id="eMail" onKeyDown={handleKeyDown} required />
               <label><b>Password</b></label> 
-                <input type="password" placeholder="Enter Password" id="psw" required/> 
+                <input type="password" placeholder="Enter Password" id="psw" onKeyDown={handleKeyDown} required/> 
               <button type="submit" onClick={auth}>Login</button>
             </div>
             <Link to="/register">Create your Account </Link> 

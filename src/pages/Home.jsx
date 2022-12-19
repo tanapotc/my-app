@@ -3,41 +3,39 @@ import axios from "axios";
 import enurl from "../api/environment";
 import React, { useState ,useEffect} from "react";
  
-const Home = () => {
-
-  useEffect(() => {
-    getUser()  
-  });
-  
+const Home = () => { 
   const url = enurl.apiUrl;
   const [UserList,setUserList] = useState([]);
-  const getUser = async () =>  {  
-    const myElement = document.getElementById('showTable'); 
-     if(myElement.style.display === "none"){
-      try{
-       await axios.get(`${url}users`).then(response => { 
-          setUserList(response.data);  
-          myElement.style.display = "table";
-        }).catch(ex => console.error(ex)); 
-      }catch(ex){
-        throw ex;
-      }
-     } else {
-      myElement.style.display = "none";
-     }
-  } 
+  
+  useEffect(() => {
+    document.title = 'Home';
+    const getData = async () =>  {  
+      const myElement = document.getElementById('showTable'); 
+      myElement.style.display = "table"; 
+        try{
+         await axios.get(`${url}users`)
+         .then(response => { 
+            setUserList(response.data);   
+          }).catch(ex => console.error(ex)); 
+        }catch(ex){
+          throw ex;
+        } 
+    }
+    getData()
+  }, [])  // eslint-disable-line react-hooks/exhaustive-deps
+  
   return (
     <>
       <section className="card">
-        <button className="btn btn-primary" onClick={ getUser } >Show</button>
+        {/* <button className="btn btn-primary" onClick={ getUser } >Show</button> */}
         <div className="userTable">
-          <table id='showTable' >
+          <table id='showTable'>
             <tr> 
               <th>ID</th>
               <th>Username</th>
               <th>E-Mail</th>
             </tr>
-            {UserList.map((val,key ) => {
+            {UserList.map((val) => {
               return (
                 <tr> 
                   <td>{val.User_ID}</td>

@@ -3,10 +3,12 @@ import logo from '../../img/login.png';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import enurl from "../../api/environment";
-
+import {useEffect} from "react";
 const Forgotpassword = () => {
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
   const url = enurl.apiUrl;
-
   async function auth() {
     let mail = document.getElementById('eMail').value;
     let pass = document.getElementById('psw').value;
