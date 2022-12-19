@@ -1,4 +1,5 @@
 import '../styles/body.css'
+import '../styles/Loading.css'
 import axios from "axios";
 import enurl from "../api/environment";
 import React, { useState ,useEffect} from "react";
@@ -6,8 +7,11 @@ import React, { useState ,useEffect} from "react";
 const Home = () => { 
   const url = enurl.apiUrl;
   const [UserList,setUserList] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
   
+
   useEffect(() => {
+    setIsLoading(true)
     document.title = 'Home';
     const getData = async () =>  {  
       const myElement = document.getElementById('showTable'); 
@@ -16,6 +20,7 @@ const Home = () => {
          await axios.get(`${url}users`)
          .then(response => { 
             setUserList(response.data);   
+            setIsLoading(false);
           }).catch(ex => console.error(ex)); 
         }catch(ex){
           throw ex;
@@ -26,6 +31,14 @@ const Home = () => {
   
   return (
     <>
+    {/* Loading Dialog */}
+      <div style={{ display: isLoading ? 'flex' : 'none' }} className='modal'>
+        <div className='modal-loader'>
+          <div className='loader'></div>
+          <div className='modal-text'>Loading...</div>
+        </div>
+      </div>
+
       <section className="card">
         {/* <button className="btn btn-primary" onClick={ getUser } >Show</button> */}
         <div className="userTable">
