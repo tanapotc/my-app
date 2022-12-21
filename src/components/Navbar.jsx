@@ -5,6 +5,7 @@ const Navbar = () => {
     function logout() {
         sessionStorage.setItem('username','')
         sessionStorage.setItem('user_id','')
+        sessionStorage.setItem("isLoggedIn",false); 
     }
     
   return (
